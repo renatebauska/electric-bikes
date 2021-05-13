@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title= t("title")
+    %meta{ content: "width=device-width,initial-scale=1", name: "viewport"}
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    - if user_signed_in?
+      = render "shared/nav"
+
+    .container.mt-120
+      - if user_signed_in?
+        .card.rounded-0
+          .card-header
+            - if content_for? :section_header
+              = yield :section_header
+          .card-body
+            = yield
+      - else
+        = yield

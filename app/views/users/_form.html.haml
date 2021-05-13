@@ -1,0 +1,17 @@
+- options = admin? ? {} : { disabled: true }
+
+.row
+  .col-6
+    = simple_form_for @user, wrapper: :horizontal_form do |f|
+      = f.input :username
+      = f.input :email
+      = f.input :role, collection: User.roles.map { |role| [User.humanize_role(role), role] },
+        input_html: options
+      = f.input :password
+      = f.input :password_confirmation
+      .row.mt-3
+        .col-6
+          = link_to t("btn.cancel"), root_path, class: "btn btn-secondary"
+        .col-6
+          .d-flex.flex-row.justify-content-end
+            = f.button :submit, t("btn.confirm"), class: "btn btn-primary"

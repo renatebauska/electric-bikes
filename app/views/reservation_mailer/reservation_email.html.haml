@@ -1,0 +1,7 @@
+%p= "Labdien, #{@user}!"
+%p= "Jūs esat rezervējis elektrisko velosipēdu #{@bike}."
+%p= "Lietošanas periods no #{@start_at} līdz #{@end_at}."
+%p
+  = "Atteikt rezervaciju:"
+  %span
+    %a{ href: "#{cancel_schedule_url(@schedule)}" }>Atteikt

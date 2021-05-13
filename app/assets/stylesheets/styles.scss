@@ -1,0 +1,25 @@
+body {
+  background-color: #F9F9F9 !important;
+}
+
+.table {
+  .narrow-row {
+    width: 80px;
+    text-align: center;
+  }
+}
+
+td > a {
+  text-decoration: none !important;
+  color: #212529 !important;
+  font-weight: bold;
+}
+
+.mt-120 {
+  margin-top: 120px;
+}
+
+.link-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

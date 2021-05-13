@@ -1,0 +1,17 @@
+- schedules.each do |schedule|
+  %tr
+    %td= schedule.user.username
+    %td
+      = schedule.bike.name
+      - if DateTime.now < schedule.end_at && !schedule.canceled
+        %span.badge.badge-success= "Aktīvs"
+      - if schedule.canceled
+        %span.badge.badge-warning= "Atcelts"
+    %td= schedule.start_at.strftime("%d.%m.%Y, %H:%M")
+    %td= schedule.end_at.strftime("%d.%m.%Y, %H:%M")
+    %td.narrow-row= link_to fa_icon("eye"), schedule_path(schedule)
+    %td.narrow-row= link_to fa_icon("times"), cancel_schedule_path(schedule),
+      data: { confirm: t("confirm_cancel") }
+    - if admin?
+      %td.narrow-row= link_to fa_icon("trash-alt"), schedule_path(schedule),
+        method: :delete, data: { confirm: t("confirm_delete") }

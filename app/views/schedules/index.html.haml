@@ -1,0 +1,26 @@
+= content_for :section_header do
+  .row
+    .col
+      %h3= (admin? ? t(".admin_title") : t(".user_title"))
+    .col
+      .d-flex.justify-content-end
+        = link_to fa_icon("file-pdf", t("download")), schedules_path(format: :pdf),
+          class: "btn btn-sm btn-danger"
+
+%table.table.table-bordered.table-striped
+  %thead.table-dark
+    %tr
+      %th= Schedule.human_attribute_name :user
+      %th= Schedule.human_attribute_name :bike
+      %th= Schedule.human_attribute_name :start_at
+      %th= Schedule.human_attribute_name :end_at
+      %th= t("show")
+      %th= t("cancel")
+      - if admin?
+        %th= t("delete")
+  %tbody
+    - if admin?
+      = render "schedules", schedules: @schedules
+    - else
+      = render "schedules", schedules: current_user.schedules.order_by_date
+

@@ -1,0 +1,20 @@
+%nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark.mb-5
+  %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarNav.collapse.navbar-collapse
+    .container
+      %ul.navbar-nav
+        - if current_user.role == "admin"
+          %li.nav-item
+            = link_to t("nav.users"), users_path, class: "nav-link"
+        %li.nav-item
+          = link_to (admin? ? t("nav.admin_schedule") : t("nav.user_schedule")), schedules_path, class: "nav-link"
+        %li.nav-item
+          = link_to t("nav.bikes"), bikes_path, class: "nav-link"
+      %ul.navbar-nav.ml-auto
+        %li.nav-item.dropdown
+          %a.nav-link.dropdown-toggle#dropdownMenuLink{ href: "#", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
+            = current_user.username
+          .dropdown-menu{ "aria-labelledby" => "dropdownMenuLink" }
+            = link_to "Profils", edit_user_path(current_user), class: "dropdown-item"
+            = link_to "Iziet", destroy_user_session_path, method: "delete", class: "dropdown-item"

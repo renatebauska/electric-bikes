@@ -1,0 +1,25 @@
+= content_for :section_header do
+  .row
+    .col
+      %h3= t(".title")
+    .col
+      .d-flex.justify-content-end
+        = link_to fa_icon("plus", t("btn.add")), new_user_path, class: "btn btn-sm btn-primary"
+
+%table.table.table-bordered.table-striped
+  %thead.table-dark
+    %tr
+      %th= User.human_attribute_name :username
+      %th= User.human_attribute_name :email
+      %th= User.human_attribute_name :role
+      %th= t("edit")
+      %th= t("delete")
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.username
+        %td= user.email
+        %td= User.humanize_role(user.role)
+        %td.narrow-row= link_to fa_icon("edit"), edit_user_path(user)
+        %td.narrow-row= link_to fa_icon("trash-alt"), user_path(user),
+          method: :delete, data: { confirm: t("confirm_delete") }

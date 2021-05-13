@@ -1,0 +1,26 @@
+:ruby
+  schedules =
+    begin
+      if admin?
+        @schedules
+      else
+        current_user.schedules.order_by_date
+      end
+    end
+
+%h4.text-center= t("bike_schedule_list")
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th= Schedule.human_attribute_name :user
+      %th= Schedule.human_attribute_name :bike
+      %th= Schedule.human_attribute_name :start_at
+      %th= Schedule.human_attribute_name :end_at
+  %tbody
+    - schedules.each do |schedule|
+      %tr
+        %td= schedule.user.username
+        %td= schedule.bike.name
+        %td= schedule.start_at.strftime("%d.%m.%Y, %H:%M")
+        %td= schedule.end_at.strftime("%d.%m.%Y, %H:%M")

@@ -1,0 +1,22 @@
+= content_for :section_header do
+  .row
+    .col
+      %h3= t(".title")
+    - if DateTime.now < @schedule.end_at && !@schedule.canceled
+      .col
+        .d-flex.justify-content-end
+          = link_to t("btn.cancel"), cancel_schedule_path, class: "btn btn-sm btn-warning"
+
+%dl.row
+  %dt.col-3= t("labels.user")
+  %dd.col-9= @schedule.user.username
+  %dt.col-3= t("labels.email")
+  %dd.col-9= @schedule.user.email
+  %dt.col-3= t("labels.bike")
+  %dd.col-9= @schedule.bike.name
+  %dt.col-3= t("labels.start_at")
+  %dd.col-9= @schedule.start_at.strftime("%d.%m.%Y, %H:%M")
+  %dt.col-3= t("labels.end_at")
+  %dd.col-9= @schedule.end_at.strftime("%d.%m.%Y, %H:%M")
+  %dt.col-3= t("labels.status")
+  %dd.col-9= @schedule.canceled ? t("labels.canceled") : t("labels.active")

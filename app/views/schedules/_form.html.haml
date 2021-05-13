@@ -1,0 +1,17 @@
+.row
+  .col-6
+    = simple_form_for @schedule, wrapper: :horizontal_form do |f|
+      = f.input :user_id, collection: User.all.map { |e| [e.username, e.id] }, selected: @user.id,
+        input_html: { readonly: true }
+      = f.input :bike_id, collection: Bike.all.map { |b| [b.name, b.id] }, selected: @bike.id,
+        input_html: { readonly: true }
+      = f.input :start_at, as: :string, input_html: { class: "datepicker" }
+      = f.input :end_at, as: :string, input_html: { class: "datepicker" }
+      = f.input :contact_email, input_html: { value: @user.email }
+
+      .row.mt-3
+        .col-6
+          = link_to t("btn.cancel"), schedules_path, class: "btn btn-secondary"
+        .col-6
+          .d-flex.flex-row.justify-content-end
+            = f.button :submit, t("btn.confirm"), class: "btn btn-primary"

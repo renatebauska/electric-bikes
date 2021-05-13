@@ -1,0 +1,84 @@
+lv:
+  btn:
+    add: Pievienot
+    cancel: Atcelt
+    confirm: Apstiprināt
+    reserve: Rezervēt
+
+  bike_schedule_list: Elektrisko velosipēdu rezervācijas saraksts
+  cancel: Atcelt
+  confirm_delete: Vai dzēst?
+  confirm_cancel: Vai atcelt rezervāciju?
+  edit: Rediģēt
+  delete: Dzēst
+  download: Lejupielādēt
+  logout: Iziet
+  reserve: Rezervēt
+  reserved: Rezervēts
+  show: Skatīt
+  title: Elekctrisko velosipēdu rezervēšana
+
+  labels:
+    active: Aktīvs
+    bike: Elektriskais velosipēds
+    canceled: Atcelts
+    email: E-pasts
+    end_at: Beigu datums
+    login: Pierakstīties
+    password: Parole
+    start_at: Sākuma datums
+    status: Statuss
+    user: Darbinieks
+
+  bikes:
+    index:
+      title: Elektriskie velosipēdi
+    new:
+      title: Jauns elektriskais velosipēds
+    edit:
+      title: Rediģēt elektrisko velosipēdu
+  schedules:
+    index:
+      admin_title: Visas rezervācijas
+      user_title: Manas rezervācijas
+    new:
+      title: Jauna rezervācija
+    edit:
+      title: Rediģēt rezervāciju
+    show:
+      title: Rezervācija
+  users:
+    index:
+      title: Darbinieki
+    new:
+      title: Jauns darbinieks
+    edit:
+      title: Rediģēt
+
+  activerecord:
+    attributes:
+      bike:
+        name: Nosaukums
+      schedule:
+        bike: Elektriskais velosipēds
+        bike_id: Elektriskais velosipēds
+        contact_email: E-pasts
+        end_at: Beigu datums
+        user: Darbinieks
+        user_id: Darbinieks
+        start_at: Sākuma datums
+      user:
+        username: Lietotājvārds
+        email: E-pasts
+        password: Parole
+        password_confirmation: Apstiprināt paroli
+        role: Statuss
+        roles:
+          admin: Administrators
+          user: Darbinieks
+
+  nav:
+    bikes: Elektriskie velosipēdi
+    admin_schedule: Visas rezervācijas
+    user_schedule: Manas rezervācijas
+    users: Darbinieki

@@ -1,0 +1,30 @@
+= content_for :section_header do
+  .row
+    .col
+      %h3.panel-title= t(".title")
+    - if admin?
+      .col
+        .d-flex.justify-content-end
+          = link_to fa_icon("plus", t("btn.add")), new_bike_path, class: "btn btn-sm btn-primary"
+
+%table.table.table-bordered.table-striped
+  %thead.table-dark
+    %tr
+      %th= Bike.human_attribute_name :name
+      %th= t("reserve")
+      - if admin?
+        %th= t("edit")
+        %th= t("delete")
+  %tbody
+    - @bikes.each do |bike|
+      %tr
+        %td
+          = bike.name
+          - unless bike.available
+            %span.badge.badge-danger= t("reserved")
+        %td.narrow-row= link_to fa_icon("bicycle"), new_schedule_path(bike: bike),
+          class: ("link-disabled " unless bike.available)
+        - if admin?
+          %td.narrow-row= link_to fa_icon("edit"), edit_bike_path(bike)
+          %td.narrow-row= link_to fa_icon("trash-alt"), bike_path(bike),
+            method: :delete, data: { confirm: t("confirm_delete") }
